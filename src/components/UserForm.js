@@ -6,9 +6,9 @@ const UserForm = () => {
 	return (
 		<div className="flex flex-col justify-center items-center min-h-[90vh] p-4 md:p-8">
 			<div className='flex items-center justify-center text-[#323232] w-full md:w-4/12 my-4 mx-2'>
-				<hr className="border-t border-[#67615d] w-1/4 md:w-2/4 mr-4" />
+				<hr className="border-t border-[#67615d] w-1/4 md:w-2/4 text-center" />
 				<h1 className='text-[1.10rem] md:text-xl md:w-full w-full font-semibold text-center uppercase'>Personal Details</h1>
-				<hr className="border-t border-[#67615d] w-1/4 md:w-2/4 ml-4" />
+				<hr className="border-t border-[#67615d] w-1/4 md:w-2/4 text-center" />
 			</div>
 			<Formik
 				initialValues={{
@@ -52,7 +52,7 @@ const UserForm = () => {
 				}}
 			>
 				{({ values, errors }) => (
-					<Form className="p-4 md:p-8 bg-[#ddd0c867] shadow-md rounded w-full md:w-4/12">
+					<Form className="p-4 md:p-5 bg-[#ddd0c867] shadow-md rounded w-full md:w-4/12">
 						<div className="mb-3 flex">
 							<div className="flex-1 mr-2">
 								<label htmlFor="firstName" className="block md:text-sm text-xs font-medium text-gray-800">
@@ -138,7 +138,7 @@ const UserForm = () => {
 							</div>
 							<div className="ml-2 flex-1">
 								<label htmlFor="weight" className="block md:text-sm text-xs font-medium text-gray-800">
-									Weight <span className='md:text-xs text-[0.5rem]'>(in Kgs)</span>
+									Weight <span className='md:text-xs text-[0.4rem]'>(in Kgs)</span>
 								</label>
 								<Field
 									required
@@ -171,8 +171,10 @@ const UserForm = () => {
 														<option value="">Select</option>
 														<option value="mother">Mother</option>
 														<option value="father">Father</option>
-														<option value="sister">Sister</option>
-														<option value="brother">Brother</option>
+														<option value="youngerSister">Younger Sister</option>
+														<option value="youngerBrother">Younger Brother</option>
+														<option value="elderSister">Elder Sister</option>
+														<option value="elderBrother">Elder Brother</option>
 													</Field>
 													<ErrorMessage name={`familyDetails[${index}].relationship`} component="p" className="text-red-500 text-xs" />
 												</div>
