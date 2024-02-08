@@ -10,6 +10,7 @@ import MuiAlert from '@mui/material/Alert';
 const Login = () => {
 	const [isSignInForm, setIsSignInForm] = useState(true);
 	const [errorMessage, setErrorMessage] = useState(null);
+	const [successMessage, setSuccessMessage] = useState(null); // New state for success message
 	const [loading, setLoading] = useState(false);
 	const name = useRef(null);
 	const email = useRef(null);
@@ -57,6 +58,7 @@ const Login = () => {
 						displayName: name.current.value,
 					})
 						.then(() => {
+							setSuccessMessage('Registration successful!');
 							setIsSignInForm(!isSignInForm);
 						})
 						.catch((error) => {
@@ -86,25 +88,26 @@ const Login = () => {
 		}
 	};
 
-
 	const toggleSignInForm = () => {
 		setErrorMessage('');
+		setSuccessMessage('');
 		setIsSignInForm(!isSignInForm);
 		setLoading(false);
 	};
 
 	const handleSnackbarClose = () => {
 		setErrorMessage(null);
+		setSuccessMessage(null);
 	};
 
 	return (
-		<div className="flex justify-center items-center h-screen bg-[#ddd0c867]">
-			<form onSubmit={(e) => e.preventDefault()} className="rounded-2xl shadow-lg p-8 text-white border-[1px] border-[#ddd0c867] bg-[#DDD0C8]" noValidate>
-				<div className="px-5">
-					<h1 className="font-bold text-3xl text-black">{isSignInForm ? 'Login' : 'Sign Up'}</h1>
-					<p className="text-md text-black py-2">{isSignInForm ? 'Login to your account' : 'Sign up to your account'}</p>
+		<div className="flex justify-center items-center min-h-screen bg-[#ddd0c867]">
+			<form onSubmit={(e) => e.preventDefault()} className="rounded-2xl shadow-lg p-4 md:p-8 text-white border-[1px] border-[#ddd0c867] bg-[#DDD0C8]" noValidate>
+				<div className="px-4 md:px-8">
+					<h1 className="font-bold text-xl md:text-3xl text-black">{isSignInForm ? 'Login' : 'Sign Up'}</h1>
+					<p className="text-md md:text-lg text-black py-2">{isSignInForm ? 'Login to your account' : 'Sign up to your account'}</p>
 				</div>
-				<div className=" rounded-xl p-6">
+				<div className=" rounded-xl p-4 md:p-6">
 					{!isSignInForm && (
 						<div className="py-1">
 							<label className="text-black font-semibold text-sm">Name</label>
@@ -119,13 +122,13 @@ const Login = () => {
 						<label className="text-black font-semibold text-sm">Password</label>
 						<input ref={password} type="password" placeholder="••••••••" className="bg-[#EAEAEA] p-2 my-1 w-full rounded-lg text-black" />
 					</div>
-					{errorMessage && (
-						<Snackbar open={!!errorMessage} autoHideDuration={6000} onClose={handleSnackbarClose} anchorOrigin={{
+					{(errorMessage || successMessage) && (
+						<Snackbar open={!!errorMessage || !!successMessage} autoHideDuration={6000} onClose={handleSnackbarClose} anchorOrigin={{
 							vertical: 'top',
 							horizontal: 'right',
 						}}>
-							<MuiAlert elevation={8} variant="filled" severity="error" onClose={handleSnackbarClose}>
-								{errorMessage}
+							<MuiAlert elevation={8} variant="filled" severity={errorMessage ? 'error' : 'success'} onClose={handleSnackbarClose}>
+								{errorMessage || successMessage}
 							</MuiAlert>
 						</Snackbar>
 					)}
@@ -139,7 +142,7 @@ const Login = () => {
 						Don’t have an account? <span className="text-[#323232] cursor-pointer" onClick={toggleSignInForm}>Register here</span>
 					</p>
 				) : (
-					<p className="  text-center text-sm text-[#858585]">
+					<p className="text-center text-sm text-[#858585]">
 						Already registered? <span className="text-[#323232] cursor-pointer" onClick={toggleSignInForm}>Login here</span>
 					</p>
 				)}

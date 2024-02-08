@@ -23,7 +23,7 @@ const Header = () => {
 				</div>
 				<div>
 					<button
-						className="p-2 mx-14 border-[1px] border-[#858585] text-[#323232] font-semibold text-sm hover:bg-[#32323222]"
+						className="p-2 md:mx-14 mx-2 border-[1px] border-[#858585] text-[#323232] font-semibold text-sm hover:bg-[#32323222]"
 						onClick={handleSignOut}
 					>
 						Sign Out  <span className='mx-1'><i className="fa fa-sign-out" aria-hidden="true"></i></span>

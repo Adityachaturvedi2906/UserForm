@@ -4,11 +4,11 @@ import * as Yup from 'yup';
 
 const UserForm = () => {
 	return (
-		<div className="flex flex-col justify-center items-center min-h-[90vh]">
-			<div className=' flex items-center justify-center text-[#323232] w-4/12 my-4 mx-2'>
-				<hr className="border-t border-[#67615d] w-1/4 mr-4" />
-				<h1 className='text-xl font-semibold uppercase'>Personal Details</h1>
-				<hr className="border-t border-[#67615d] w-1/4 ml-4" />
+		<div className="flex flex-col justify-center items-center min-h-[90vh] p-4 md:p-8">
+			<div className='flex items-center justify-center text-[#323232] w-full md:w-4/12 my-4 mx-2'>
+				<hr className="border-t border-[#67615d] w-1/4 md:w-2/4 mr-4" />
+				<h1 className='text-[1.10rem] md:text-xl md:w-full w-full font-semibold text-center uppercase'>Personal Details</h1>
+				<hr className="border-t border-[#67615d] w-1/4 md:w-2/4 ml-4" />
 			</div>
 			<Formik
 				initialValues={{
@@ -52,10 +52,10 @@ const UserForm = () => {
 				}}
 			>
 				{({ values, errors }) => (
-					<Form className="p-4 bg-[#ddd0c867] shadow-md rounded w-4/12">
+					<Form className="p-4 md:p-8 bg-[#ddd0c867] shadow-md rounded w-full md:w-4/12">
 						<div className="mb-3 flex">
 							<div className="flex-1 mr-2">
-								<label htmlFor="firstName" className="block text-sm font-medium text-gray-800">
+								<label htmlFor="firstName" className="block md:text-sm text-xs font-medium text-gray-800">
 									First Name
 								</label>
 								<Field
@@ -68,7 +68,7 @@ const UserForm = () => {
 								<ErrorMessage name="firstName" component="p" className="text-red-500 text-xs" />
 							</div>
 							<div className="flex-1 ml-2">
-								<label htmlFor="lastName" className="block text-sm font-medium text-gray-800">
+								<label htmlFor="lastName" className="block md:text-sm text-xs font-medium text-gray-800">
 									Last Name
 								</label>
 								<Field
@@ -83,7 +83,7 @@ const UserForm = () => {
 						</div>
 						<div className="mb-3 flex">
 							<div className="flex-1 mr-2">
-								<label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-800">
+								<label htmlFor="phoneNumber" className="block md:text-sm text-xs font-medium text-gray-800">
 									Phone Number
 								</label>
 								<Field
@@ -96,7 +96,7 @@ const UserForm = () => {
 								<ErrorMessage name="phoneNumber" component="p" className="text-red-500 text-xs" />
 							</div>
 							<div className="flex-1 ml-2">
-								<label htmlFor="email" className="block text-sm font-medium text-gray-800">
+								<label htmlFor="email" className="block md:text-sm text-xs font-medium text-gray-800">
 									Email
 								</label>
 								<Field
@@ -111,7 +111,7 @@ const UserForm = () => {
 						</div>
 						<div className="mb-3 flex items-center">
 							<div className="flex-1">
-								<label htmlFor="Date" className="block text-sm font-medium text-gray-800">
+								<label htmlFor="Date" className="block md:text-sm text-xs font-medium text-gray-800">
 									Date Of Birth
 								</label>
 								<Field
@@ -124,7 +124,7 @@ const UserForm = () => {
 								<ErrorMessage name="Date" component="p" className="text-red-500 text-xs" />
 							</div>
 							<div className="ml-2 flex-1">
-								<label htmlFor="height" className="block text-sm font-medium text-gray-800">
+								<label htmlFor="height" className="block md:text-sm text-xs font-medium text-gray-800">
 									Height
 								</label>
 								<Field
@@ -137,8 +137,8 @@ const UserForm = () => {
 								<ErrorMessage name="height" component="p" className="text-red-500 text-xs" />
 							</div>
 							<div className="ml-2 flex-1">
-								<label htmlFor="weight" className="block text-sm font-medium text-gray-800">
-									Weight (in Kgs)
+								<label htmlFor="weight" className="block md:text-sm text-xs font-medium text-gray-800">
+									Weight <span className='md:text-xs text-[0.5rem]'>(in Kgs)</span>
 								</label>
 								<Field
 									required
@@ -158,7 +158,7 @@ const UserForm = () => {
 										{values.relationships.map((relationship, index) => (
 											<div key={index} className='flex items-center mb-1'>
 												<div className="flex-1 mr-2">
-													<label htmlFor={`familyDetails[${index}].relationship`} className="block text-sm font-medium text-gray-800">
+													<label htmlFor={`familyDetails[${index}].relationship`} className="block md:text-sm text-xs font-medium text-gray-800">
 														Relationship
 													</label>
 													<Field
@@ -176,16 +176,16 @@ const UserForm = () => {
 													</Field>
 													<ErrorMessage name={`familyDetails[${index}].relationship`} component="p" className="text-red-500 text-xs" />
 												</div>
-												<div className='ml-1'>
-													<label className="block text-sm font-medium text-gray-800" htmlFor={`relationships.${index}.job`}>Job:</label>
+												<div className='flex-1 ml-1'>
+													<label className="block md:text-sm text-xs font-medium text-gray-800" htmlFor={`relationships.${index}.job`}>Job:</label>
 													<Field required className="mt-1 p-2 bg-gray-100 w-full border-[1px] border-[#3232327e] rounded-md " type="text" id={`relationships.${index}.job`} name={`relationships.${index}.job`} />
 												</div>
 												<div className='mt-5'>
-													<button type="button" className=' bg-[#323232] text-white py-1 px-2 text-sm ml-2 rounded-2xl hover:bg-[#3d3d3d]' onClick={() => remove(index)} disabled={index === 0} >
+													<button type="button" className=' bg-[#323232] text-white py-1 px-2 md:text-sm text-xs text-center ml-2 rounded-2xl hover:bg-[#3d3d3d]' onClick={() => remove(index)} disabled={index === 0} >
 														<i class="fa fa-minus" aria-hidden="true"></i>
 													</button></div>
 												<div className='mt-5'>
-													<button type="button" className=' bg-[#323232] text-white py-1 px-2 text-sm ml-2 rounded-2xl hover:bg-[#3d3d3d]' onClick={() => push({ relationship: '', job: '' })}>
+													<button type="button" className=' bg-[#323232] text-white py-1 px-2 md:text-sm text-xs text-center ml-2 rounded-2xl hover:bg-[#3d3d3d]' onClick={() => push({ relationship: '', job: '' })}>
 														<i class="fa fa-plus" aria-hidden="true"></i>
 													</button>
 												</div>
@@ -199,7 +199,7 @@ const UserForm = () => {
 
 						<div className="mb-3 flex">
 							<div className="flex-1 mr-2">
-								<label htmlFor="location" className="block text-sm font-medium text-gray-800">
+								<label htmlFor="location" className="block md:text-sm text-xs font-medium text-gray-800">
 									Location
 								</label>
 								<Field
@@ -212,7 +212,7 @@ const UserForm = () => {
 								<ErrorMessage name="location" component="p" className="text-red-500 text-xs" />
 							</div>
 							<div className="flex-1 ml-2">
-								<label htmlFor="hometown" className="block text-sm font-medium text-gray-800">
+								<label htmlFor="hometown" className="block md:text-sm text-xs font-medium text-gray-800">
 									Hometown
 								</label>
 								<Field
@@ -230,7 +230,7 @@ const UserForm = () => {
 						<div className="mt-4">
 							<button
 								type="submit"
-								className="w-full bg-[#323232] text-white p-2 text-lg rounded-md hover:bg-[#3d3d3d]"
+								className="w-full md:w-full bg-[#323232] text-white p-2 text-lg rounded-md hover:bg-[#3d3d3d]"
 							>
 								Submit
 							</button>
